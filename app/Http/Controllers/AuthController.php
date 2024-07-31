@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+use Symfony\Component\HttpFoundation\Request;
 
 class AuthController extends Controller
 {
@@ -15,7 +18,7 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['login']]);
+        $this->middleware('auth:api', ['except' => ['login','register']]);
     }
 
     /**
@@ -28,7 +31,7 @@ class AuthController extends Controller
         $credentials = request(['email', 'password']);
 
         if (! $token = auth()->attempt($credentials)) {
-            return response()->json(['error' => 'Unauthorized'], 401);
+            return response()->json(['error' => 'Não autorizado'], 401);
         }
 
         return $this->respondWithToken($token);
@@ -64,6 +67,21 @@ class AuthController extends Controller
     public function refresh()
     {
         return $this->respondWithToken(Auth::refresh());
+    }
+
+    public function register(Request $request){
+        $validateData = $request->validate([
+            'email' => 'required|unique:users|max:255',
+            'name' => 'required',
+            'password' => 'required|min:8|confirmed'
+        ]);
+
+        $data = array();
+        $data['name'] = $request->name;
+        $data['email'] = $request->email;
+        $data['password'] = Hash::make($request->password);
+        User::create($data);
+        return $this->login($request);
     }
 
     /**
