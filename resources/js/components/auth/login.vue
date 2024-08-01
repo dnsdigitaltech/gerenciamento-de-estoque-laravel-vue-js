@@ -10,7 +10,7 @@
                         <div class="text-center">
                             <h1 class="h4 text-gray-900 mb-4">Login</h1>
                         </div>
-                        <form class="user" @submit.prevent="login">
+                        <form class="user">
                             <div class="form-group">
                             <input type="email" class="form-control" id="exampleInputEmail" aria-describedby="emailHelp"
                                 placeholder="Enter Email Address" v-model="form.email">
@@ -28,7 +28,7 @@
                             </div>
                             </div>
                             <div class="form-group">
-                            <button @click="login()" class="btn btn-primary btn-block">Login</button>
+                                <button @click="login()" type="button" class="btn btn-primary btn-block">Login</button>
                             </div>
                         </form>
                         <hr>
