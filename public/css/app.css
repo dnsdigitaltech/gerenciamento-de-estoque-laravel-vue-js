@@ -15110,3 +15110,419 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+.noty_layout_mixin, #noty_layout__centerRight, #noty_layout__centerLeft, #noty_layout__center, #noty_layout__bottomRight, #noty_layout__bottomCenter, #noty_layout__bottomLeft, #noty_layout__bottom, #noty_layout__topRight, #noty_layout__topCenter, #noty_layout__topLeft, #noty_layout__top {
+  position: fixed;
+  z-index: 9999999;
+  backface-visibility: hidden;
+  -webkit-font-smoothing: subpixel-antialiased;
+  filter: blur(0);
+  -webkit-filter: blur(0);
+  max-width: 90%;
+}
+[dir] .noty_layout_mixin, [dir] #noty_layout__centerRight, [dir] #noty_layout__centerLeft, [dir] #noty_layout__center, [dir] #noty_layout__bottomRight, [dir] #noty_layout__bottomCenter, [dir] #noty_layout__bottomLeft, [dir] #noty_layout__bottom, [dir] #noty_layout__topRight, [dir] #noty_layout__topCenter, [dir] #noty_layout__topLeft, [dir] #noty_layout__top {
+  margin: 0;
+  padding: 0;
+  transform: translateZ(0) scale(1, 1);
+}
+
+#noty_layout__top {
+  top: 0;
+  width: 90%;
+}
+
+[dir=ltr] #noty_layout__top {
+  left: 5%;
+}
+
+[dir=rtl] #noty_layout__top {
+  right: 5%;
+}
+
+#noty_layout__topLeft {
+  top: 20px;
+  width: 325px;
+}
+
+[dir=ltr] #noty_layout__topLeft {
+  left: 20px;
+}
+
+[dir=rtl] #noty_layout__topLeft {
+  right: 20px;
+}
+
+#noty_layout__topCenter {
+  top: 5%;
+  width: 325px;
+}
+
+[dir=ltr] #noty_layout__topCenter {
+  left: 50%;
+  transform: translate(calc(-50% - 0.5px)) translateZ(0) scale(1, 1);
+}
+
+[dir=rtl] #noty_layout__topCenter {
+  right: 50%;
+  transform: translate(calc(-1*(-50% - 0.5px))) translateZ(0) scale(1, 1);
+}
+
+#noty_layout__topRight {
+  top: 20px;
+  width: 325px;
+}
+
+[dir=ltr] #noty_layout__topRight {
+  right: 20px;
+}
+
+[dir=rtl] #noty_layout__topRight {
+  left: 20px;
+}
+
+#noty_layout__bottom {
+  bottom: 0;
+  width: 90%;
+}
+
+[dir=ltr] #noty_layout__bottom {
+  left: 5%;
+}
+
+[dir=rtl] #noty_layout__bottom {
+  right: 5%;
+}
+
+#noty_layout__bottomLeft {
+  bottom: 20px;
+  width: 325px;
+}
+
+[dir=ltr] #noty_layout__bottomLeft {
+  left: 20px;
+}
+
+[dir=rtl] #noty_layout__bottomLeft {
+  right: 20px;
+}
+
+#noty_layout__bottomCenter {
+  bottom: 5%;
+  width: 325px;
+}
+
+[dir=ltr] #noty_layout__bottomCenter {
+  left: 50%;
+  transform: translate(calc(-50% - 0.5px)) translateZ(0) scale(1, 1);
+}
+
+[dir=rtl] #noty_layout__bottomCenter {
+  right: 50%;
+  transform: translate(calc(-1*(-50% - 0.5px))) translateZ(0) scale(1, 1);
+}
+
+#noty_layout__bottomRight {
+  bottom: 20px;
+  width: 325px;
+}
+
+[dir=ltr] #noty_layout__bottomRight {
+  right: 20px;
+}
+
+[dir=rtl] #noty_layout__bottomRight {
+  left: 20px;
+}
+
+#noty_layout__center {
+  top: 50%;
+  width: 325px;
+}
+
+[dir=ltr] #noty_layout__center {
+  left: 50%;
+  transform: translate(calc(-50% - 0.5px), calc(-50% - 0.5px)) translateZ(0) scale(1, 1);
+}
+
+[dir=rtl] #noty_layout__center {
+  right: 50%;
+  transform: translate(calc(-1*(-50% - 0.5px)), calc(-50% - 0.5px)) translateZ(0) scale(1, 1);
+}
+
+#noty_layout__centerLeft {
+  top: 50%;
+  width: 325px;
+}
+
+[dir] #noty_layout__centerLeft {
+  transform: translate(0, calc(-50% - 0.5px)) translateZ(0) scale(1, 1);
+}
+
+[dir=ltr] #noty_layout__centerLeft {
+  left: 20px;
+}
+
+[dir=rtl] #noty_layout__centerLeft {
+  right: 20px;
+}
+
+#noty_layout__centerRight {
+  top: 50%;
+  width: 325px;
+}
+
+[dir] #noty_layout__centerRight {
+  transform: translate(0, calc(-50% - 0.5px)) translateZ(0) scale(1, 1);
+}
+
+[dir=ltr] #noty_layout__centerRight {
+  right: 20px;
+}
+
+[dir=rtl] #noty_layout__centerRight {
+  left: 20px;
+}
+
+.noty_progressbar {
+  display: none;
+}
+
+.noty_has_timeout.noty_has_progressbar .noty_progressbar {
+  display: block;
+  position: absolute;
+  bottom: 0;
+  height: 3px;
+  width: 100%;
+  opacity: 0.2;
+  filter: alpha(opacity=10);
+}
+
+[dir] .noty_has_timeout.noty_has_progressbar .noty_progressbar {
+  background-color: #646464;
+}
+
+[dir=ltr] .noty_has_timeout.noty_has_progressbar .noty_progressbar {
+  left: 0;
+}
+
+[dir=rtl] .noty_has_timeout.noty_has_progressbar .noty_progressbar {
+  right: 0;
+}
+
+.noty_bar {
+  -webkit-backface-visibility: hidden;
+  -webkit-transform: translate(0, 0) translateZ(0) scale(1, 1);
+  -webkit-font-smoothing: subpixel-antialiased;
+  overflow: hidden;
+}
+
+[dir] .noty_bar {
+  transform: translate(0, 0) scale(1, 1);
+}
+
+.noty_effects_open {
+  opacity: 0;
+}
+
+[dir=ltr] .noty_effects_open {
+  transform: translate(50%);
+  animation: noty_anim_in 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  animation-fill-mode: forwards;
+}
+
+[dir=rtl] .noty_effects_open {
+  transform: translate(-50%);
+  animation: noty_anim_in 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  animation-fill-mode: forwards;
+}
+
+[dir=ltr] .noty_effects_close {
+  animation:  noty_anim_out-ltr 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  animation-fill-mode: forwards;
+}
+
+[dir=rtl] .noty_effects_close {
+  animation:  noty_anim_out-rtl 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  animation-fill-mode: forwards;
+}
+
+[dir=ltr] .noty_fix_effects_height {
+  animation: noty_anim_height 75ms ease-out;
+}
+
+[dir=rtl] .noty_fix_effects_height {
+  animation: noty_anim_height 75ms ease-out;
+}
+
+[dir] .noty_close_with_click {
+  cursor: pointer;
+}
+
+.noty_close_button {
+  position: absolute;
+  top: 2px;
+  font-weight: bold;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+  transition: all 0.2s ease-out;
+}
+
+[dir] .noty_close_button {
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+[dir=ltr] .noty_close_button {
+  right: 2px;
+}
+
+[dir=rtl] .noty_close_button {
+  left: 2px;
+}
+
+[dir] .noty_close_button:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.noty_modal {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: 10000;
+  opacity: 0.3;
+  top: 0;
+}
+
+[dir] .noty_modal {
+  background-color: #000;
+}
+
+[dir=ltr] .noty_modal {
+  left: 0;
+}
+
+[dir=rtl] .noty_modal {
+  right: 0;
+}
+
+.noty_modal.noty_modal_open {
+  opacity: 0;
+}
+
+[dir=ltr] .noty_modal.noty_modal_open {
+  animation: noty_modal_in 0.3s ease-out;
+}
+
+[dir=rtl] .noty_modal.noty_modal_open {
+  animation: noty_modal_in 0.3s ease-out;
+}
+
+[dir=ltr] .noty_modal.noty_modal_close {
+  animation: noty_modal_out 0.3s ease-out;
+  animation-fill-mode: forwards;
+}
+
+[dir=rtl] .noty_modal.noty_modal_close {
+  animation: noty_modal_out 0.3s ease-out;
+  animation-fill-mode: forwards;
+}
+
+@keyframes noty_modal_in {
+  100% {
+    opacity: 0.3;
+  }
+}
+@keyframes noty_modal_out {
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes noty_anim_in {
+  100% {
+    transform: translate(0);
+    opacity: 1;
+  }
+}
+@keyframes noty_anim_out-ltr {
+  100% {
+    transform: translate(50%);
+    opacity: 0;
+  }
+}
+@keyframes noty_anim_out-rtl {
+  100% {
+    transform: translate(-50%);
+    opacity: 0;
+  }
+}
+@keyframes noty_anim_height {
+  100% {
+    height: 0;
+  }
+}
+.noty_theme__mint.noty_bar {
+  overflow: hidden;
+  position: relative;
+}
+[dir] .noty_theme__mint.noty_bar {
+  margin: 4px 0;
+  border-radius: 2px;
+}
+.noty_theme__mint.noty_bar .noty_body {
+  font-size: 14px;
+}
+[dir] .noty_theme__mint.noty_bar .noty_body {
+  padding: 10px;
+}
+[dir] .noty_theme__mint.noty_bar .noty_buttons {
+  padding: 10px;
+}
+
+.noty_theme__mint.noty_type__alert,
+.noty_theme__mint.noty_type__notification {
+  color: #2F2F2F;
+}
+
+[dir] .noty_theme__mint.noty_type__alert, [dir] .noty_theme__mint.noty_type__notification {
+  background-color: #fff;
+  border-bottom: 1px solid #D1D1D1;
+}
+
+.noty_theme__mint.noty_type__warning {
+  color: #fff;
+}
+
+[dir] .noty_theme__mint.noty_type__warning {
+  background-color: #FFAE42;
+  border-bottom: 1px solid #E89F3C;
+}
+
+.noty_theme__mint.noty_type__error {
+  color: #fff;
+}
+
+[dir] .noty_theme__mint.noty_type__error {
+  background-color: #DE636F;
+  border-bottom: 1px solid #CA5A65;
+}
+
+.noty_theme__mint.noty_type__info,
+.noty_theme__mint.noty_type__information {
+  color: #fff;
+}
+
+[dir] .noty_theme__mint.noty_type__info, [dir] .noty_theme__mint.noty_type__information {
+  background-color: #7F7EFF;
+  border-bottom: 1px solid #7473E8;
+}
+
+.noty_theme__mint.noty_type__success {
+  color: #fff;
+}
+
+[dir] .noty_theme__mint.noty_type__success {
+  background-color: #AFC765;
+  border-bottom: 1px solid #A0B55C;
+}
