@@ -57,7 +57,7 @@ class EmployeeController extends Controller
 
             $manager = new ImageManager(Driver::class);
             $img = $manager->read($request->photo)->resize(240,200);
-            $upload_path = 'backend/backend/';
+            $upload_path = 'backend/employee/';
             $image_url = $upload_path.$name;
             $img->save($image_url);
 

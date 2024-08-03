@@ -18,6 +18,5 @@ export const routes = [
     { path: '/logout', component: logout, name: 'logout' },
     { path: '/dashboard', component: dashboard, name: 'dashboard' },
     { path: '/add-funcionario', component: employeeCreate, name: 'employeeCreate' },
-    { path: '/employee', component: employeeCreate, name: 'employeeCreate' },
     { path: '/todos-funcionarios', component: employeeIndex, name: 'employeeIndex' },
 ]

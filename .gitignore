@@ -1,6 +1,6 @@
 /node_modules
 /public/hot
-/public/employee/*
+/public/backend/employee
 /public/storage
 /storage/*.key
 /vendor
