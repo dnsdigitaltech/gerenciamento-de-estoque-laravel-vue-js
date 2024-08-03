@@ -5006,6 +5006,7 @@ var dashboard = (__webpack_require__(/*! ./components/dashboard.vue */ "./resour
 
 //Employee Component
 var employeeCreate = (__webpack_require__(/*! ./components/employee/create.vue */ "./resources/js/components/employee/create.vue")["default"]);
+var employee = (__webpack_require__(/*! ./components/employee/create.vue */ "./resources/js/components/employee/create.vue")["default"]);
 var employeeIndex = (__webpack_require__(/*! ./components/employee/index.vue */ "./resources/js/components/employee/index.vue")["default"]);
 var routes = [{
   path: '/',
@@ -5029,6 +5030,10 @@ var routes = [{
   name: 'dashboard'
 }, {
   path: '/add-funcionario',
+  component: employeeCreate,
+  name: 'employeeCreate'
+}, {
+  path: '/employee',
   component: employeeCreate,
   name: 'employeeCreate'
 }, {

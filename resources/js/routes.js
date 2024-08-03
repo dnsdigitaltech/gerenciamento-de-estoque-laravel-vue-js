@@ -8,6 +8,7 @@ let dashboard = require('./components/dashboard.vue').default;
 
 //Employee Component
 let employeeCreate = require('./components/employee/create.vue').default;
+let employee = require('./components/employee/create.vue').default;
 let employeeIndex = require('./components/employee/index.vue').default;
 
 export const routes = [
@@ -17,5 +18,6 @@ export const routes = [
     { path: '/logout', component: logout, name: 'logout' },
     { path: '/dashboard', component: dashboard, name: 'dashboard' },
     { path: '/add-funcionario', component: employeeCreate, name: 'employeeCreate' },
+    { path: '/employee', component: employeeCreate, name: 'employeeCreate' },
     { path: '/todos-funcionarios', component: employeeIndex, name: 'employeeIndex' },
 ]

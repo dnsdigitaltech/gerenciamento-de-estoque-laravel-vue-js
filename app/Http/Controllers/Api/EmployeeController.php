@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Employee;
 use Illuminate\Http\Request;
+use Intervention\Image\Drivers\Gd\Driver;
+use Intervention\Image\ImageManager;
 
 class EmployeeController extends Controller
 {
@@ -24,9 +26,9 @@ class EmployeeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        
     }
 
     /**
@@ -37,7 +39,49 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validateData = $request->validate([
+            'name' => 'required|unique:employees|max:100',
+            'email' => 'required|email:unique:employees|max:100',
+            'phone' => 'required|max:15',
+            'salary' => 'required|max:10',
+            'joining_date' => 'required|max:10',
+            'address' => 'required|max:200',
+        ]);
+
+        if($request->photo){
+            $position = strpos($request->photo, ';');
+            $sub = substr($request->photo, 0, $position);
+            $ext = explode('/', $sub)[1];
+
+            $name = time().".".$ext;
+
+            $manager = new ImageManager(Driver::class);
+            $img = $manager->read($request->photo)->resize(240,200);
+            $upload_path = 'backend/backend/';
+            $image_url = $upload_path.$name;
+            $img->save($image_url);
+
+            $employee = new Employee;
+            $employee->name = $request->name;
+            $employee->email = $request->email;
+            $employee->phone = $request->phone;
+            $employee->salary = $request->salary;
+            $employee->joining_date = $request->joining_date;
+            $employee->nid = $request->nid;
+            $employee->address = $request->address;
+            $employee->photo = $image_url;
+            $employee->save();
+        }else{
+            $employee = new Employee;
+            $employee->name = $request->name;
+            $employee->email = $request->email;
+            $employee->phone = $request->phone;
+            $employee->salary = $request->salary;
+            $employee->joining_date = $request->joining_date;
+            $employee->nid = $request->nid;
+            $employee->address = $request->address;
+            $employee->save();
+        }
     }
 
     /**
