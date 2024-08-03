@@ -1,3 +1,5 @@
+import 'vuejs-noty/dist/vuejs-noty.css'
+
 class Notification {
    success(){
         new Noty({
@@ -32,6 +34,24 @@ class Notification {
             layout: 'topRight',
             text: 'Opps tente novamente',
             timeout: 1000,
+        }).show();
+    }
+
+    image_validation(){
+        new Noty({
+            type: 'error',
+            layout: 'topRight',
+            text: 'Carregue uma imagem menor que 1 MB',
+            timeout: 2000,
+        }).show();
+    }
+
+    image_format(){
+        new Noty({
+            type: 'error',
+            layout: 'topRight',
+            text: 'Carregue uma imagem no format (PNG, JPG, JPEG)',
+            timeout: 2000,
         }).show();
     }
 }

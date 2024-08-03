@@ -30,7 +30,7 @@
 export default {
     created() {
         if(!User.loggedIn()) {
-            this.$router.push({ name: 'dashboard' })
+            this.$router.push({ name: '/' })
         }
     },
     methods: {

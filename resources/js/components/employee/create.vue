@@ -79,14 +79,14 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="customFile">Foto</label>
-                                            <input type="file" class="custom-file-input" id="customFile">
+                                            <input type="file" class="custom-file-input" id="customFile" @change="onFileSelected">
                                             <label class="custom-file-label" for="customFile">Escolha a foto</label>
                                             <small class="text-danger" v-if="errors.photo">{{  errors.photo[0]  }}</small>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <img src="form.photo" style="height: 40px; width: 40px;">
+                                            <img :src="form.photo" style="height: 40px; width: 40px;">
                                         </div>
                                     </div>
                                 </div>
@@ -108,7 +108,7 @@
 export default {
     created() {
         if(!User.loggedIn()) {
-            this.$router.push({ name: 'dashboard' })
+            this.$router.push({ name: '/' })
         }
     },
     data(){
@@ -126,8 +126,30 @@ export default {
         }
     },
     methods: {
+        onFileSelected(event){
+            let file = event.target.files[0]
+            if(file.size > 1048770) {
+                Notification.image_validation()
+            }else{
+                if(file.type == 'image/jpeg' || file.type == 'image/png'){
+                    let reader = new FileReader();
+                    reader.onload = event =>{
+                        this.form.photo = event.target.result
+                        //console.log(event.target.result)
+                    };
+                    reader.readAsDataURL(file)
+                }else{
+                    Notification.image_format()
+                }
+            }
+        },
         employeeInsert(){
-
+            axios.post('/api/employee', this.form)
+            .then(() => {
+                this.$router.push({ name: 'employeeIndex' })
+                Notification.success()
+            })
+            .catch(error =>this.errors = error.response.data.errors)
         }
     }
     
