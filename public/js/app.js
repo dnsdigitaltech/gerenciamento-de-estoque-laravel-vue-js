@@ -3288,6 +3288,36 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
         var data = _ref.data;
         return _this2.employees = data;
       })["catch"]();
+    },
+    deleteEmployee: function deleteEmployee(id) {
+      var _this3 = this;
+      Swal.fire({
+        title: "Tem certeza?",
+        text: "Você não poderá reverter isso!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Sim, exclua-o!",
+        reverseButtons: true
+      }).then(function (result) {
+        if (result.value) {
+          axios["delete"]("/api/employee/".concat(id)).then(function () {
+            _this3.employees = _this3.employees.filter(function (employee) {
+              return employee.id != id;
+            });
+          })["catch"](function () {
+            _this3.$router.push({
+              name: 'employeeIndex'
+            });
+          });
+          Swal.fire({
+            title: "Excluído!",
+            text: "Item foi excluído com sucesso.",
+            icon: "success"
+          });
+        }
+      });
     }
   }
 }, "created", function created() {
@@ -4694,7 +4724,14 @@ var render = function render() {
         src: employee.photo,
         id: "em_photo"
       }
-    })]), _vm._v(" "), _c("td", [_vm._v(_vm._s(employee.phone))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(employee.salary))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(employee.joining_date))]), _vm._v(" "), _vm._m(1, true), _vm._v(" "), _vm._m(2, true)]);
+    })]), _vm._v(" "), _c("td", [_vm._v(_vm._s(employee.phone))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(employee.salary))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(employee.joining_date))]), _vm._v(" "), _vm._m(1, true), _vm._v(" "), _c("td", [_c("button", {
+      staticClass: "btn btn-sm btn-danger",
+      on: {
+        click: function click($event) {
+          return _vm.deleteEmployee(employee.id);
+        }
+      }
+    }, [_vm._v("Remover")])])]);
   }), 0)])]), _vm._v(" "), _c("div", {
     staticClass: "card-footer"
   })])])])]);
@@ -4718,15 +4755,6 @@ var staticRenderFns = [function () {
       href: "#"
     }
   }, [_vm._v("Editar")])]);
-}, function () {
-  var _vm = this,
-    _c = _vm._self._c;
-  return _c("td", [_c("a", {
-    staticClass: "btn btn-sm btn-danger",
-    attrs: {
-      href: "#"
-    }
-  }, [_vm._v("Remover")])]);
 }];
 render._withStripped = true;
 

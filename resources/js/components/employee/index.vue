@@ -33,7 +33,7 @@
                             <td>{{ employee.salary }}</td>
                             <td>{{ employee.joining_date }}</td>
                             <td><a href="#" class="btn btn-sm btn-primary">Editar</a></td>
-                            <td><a href="#" class="btn btn-sm btn-danger">Remover</a></td>
+                            <td><button @click="deleteEmployee(employee.id)" class="btn btn-sm btn-danger">Remover</button></td>
                         </tr>
                     
                     </tbody>
@@ -72,6 +72,35 @@ export default {
             axios.get('/api/employee/')
             .then(({data}) => (this.employees = data))
             .catch()
+        },
+        deleteEmployee(id) {
+            Swal.fire({
+                title: "Tem certeza?",
+                text: "Você não poderá reverter isso!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Sim, exclua-o!", 
+                reverseButtons: true
+            }).then((result) => {
+                if (result.value) {
+                    axios.delete(`/api/employee/${id}`)
+                    .then(() => {
+                        this.employees = this.employees.filter(employee => {
+                            return employee.id != id
+                        })
+                    })
+                    .catch(() => {
+                        this.$router.push({name: 'employeeIndex'})
+                    })
+                    Swal.fire({
+                        title: "Excluído!",
+                        text: "Item foi excluído com sucesso.",
+                        icon: "success"
+                    });
+                }
+            });
         }
         
     },
