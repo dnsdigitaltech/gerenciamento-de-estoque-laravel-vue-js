@@ -86,12 +86,12 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <img :src="form.photo" style="height: 40px; width: 40px;">
+                                            <img :src="form.newphoto" style="height: 40px; width: 40px;">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                <button @click="employeeInsert()" type="button" class="btn btn-primary btn-block">Cadastrar</button>
+                                <button @click="employeeUpdate()" type="button" class="btn btn-primary btn-block">Atualizar</button>
                                 </div>
                             </form>
                         </div>
@@ -114,13 +114,14 @@ export default {
     data(){
         return {
             form: {
-                name: null,
-                email: null,
-                phone: null,
-                salary: null,
-                joining_date: null,
-                nid: null,
-                photo: null
+                name: '',
+                email: '',
+                phone: '',
+                salary: '',
+                joining_date: '',
+                nid: '',
+                newphoto: '',
+                photo: ''
             },
             errors: {}
         }
@@ -140,8 +141,7 @@ export default {
                 if(file.type == 'image/jpeg' || file.type == 'image/png'){
                     let reader = new FileReader();
                     reader.onload = event =>{
-                        this.form.photo = event.target.result
-                        //console.log(event.target.result)
+                        this.form.newphoto = event.target.result
                     };
                     reader.readAsDataURL(file)
                 }else{
@@ -149,8 +149,9 @@ export default {
                 }
             }
         },
-        employeeInsert(){
-            axios.post('/api/employee', this.form)
+        employeeUpdate(){
+            let id = this.$route.params.id
+            axios.patch(`/api/employee/${id}`, this.form)
             .then(() => {
                 this.$router.push({ name: 'employeeIndex' })
                 Notification.success()

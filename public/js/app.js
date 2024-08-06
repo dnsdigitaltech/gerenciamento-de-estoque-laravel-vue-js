@@ -3270,13 +3270,14 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
   data: function data() {
     return {
       form: {
-        name: null,
-        email: null,
-        phone: null,
-        salary: null,
-        joining_date: null,
-        nid: null,
-        photo: null
+        name: '',
+        email: '',
+        phone: '',
+        salary: '',
+        joining_date: '',
+        nid: '',
+        newphoto: '',
+        photo: ''
       },
       errors: {}
     };
@@ -3298,8 +3299,7 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
       if (file.type == 'image/jpeg' || file.type == 'image/png') {
         var reader = new FileReader();
         reader.onload = function (event) {
-          _this2.form.photo = event.target.result;
-          //console.log(event.target.result)
+          _this2.form.newphoto = event.target.result;
         };
         reader.readAsDataURL(file);
       } else {
@@ -3307,9 +3307,10 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
       }
     }
   },
-  employeeInsert: function employeeInsert() {
+  employeeUpdate: function employeeUpdate() {
     var _this3 = this;
-    axios.post('/api/employee', this.form).then(function () {
+    var id = this.$route.params.id;
+    axios.patch("/api/employee/".concat(id), this.form).then(function () {
       _this3.$router.push({
         name: 'employeeIndex'
       });
@@ -5041,7 +5042,7 @@ var render = function render() {
       width: "40px"
     },
     attrs: {
-      src: _vm.form.photo
+      src: _vm.form.newphoto
     }
   })])])]), _vm._v(" "), _c("div", {
     staticClass: "form-group"
@@ -5052,10 +5053,10 @@ var render = function render() {
     },
     on: {
       click: function click($event) {
-        return _vm.employeeInsert();
+        return _vm.employeeUpdate();
       }
     }
-  }, [_vm._v("Cadastrar")])])])])])])])])])])]);
+  }, [_vm._v("Atualizar")])])])])])])])])])])]);
 };
 var staticRenderFns = [function () {
   var _vm = this,
